@@ -18,7 +18,9 @@ public class ItemRepository {
         if (item.getId() == null) { // db에 들어가기전에는 상품의 id는 비어있다.
             em.persist(item);
         } else {
-            em.merge(item);
+            em.merge(item); // 병합
+            // 변경 감지 기능을 사용하면 원하는 속성만 선택해서 변경할 수 있지만,
+            // 병합을 사용하면 모든 속성이 변경된다. ---> 병합시 값이 없으면 null로 업데이트 할 위험도 있다. (병합은 모든 필드를 교체한다.)
         }
     }
 
